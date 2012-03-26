@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<!-- 
+Pattern Response - Style Guide/Pattern Library
+Author: Luke Brooker (http://lukebrooker.com)
+Version: 1.1
+URL: http://lukebrooker.com
+-->
+
+<head>
+<meta charset="utf-8">
+<title>Pattern Response - A Responsive Style Guide & Pattern Library</title>
+
+<!-- Mobile viewport optimization h5bp.com/ad -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width">
+<!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+<!-- Styles just for pattern response -->
+<link rel="stylesheet" href="pattern-response/css/styles.css">
+<!-- Styles for Google Prettify -->
+<link rel="stylesheet" href="pattern-response/google-code-prettify/prettify.css" />
+<!-- Style guide styles -->
+<!-- Compiles all the css files that are in the patterns directory -->
+<link rel="stylesheet" href="pattern-response/css/compiled.php">
+<!-- Uncomment and point this to any other custom css files you want to add -->
+<!-- <link rel="stylesheet" href="custom/css/custom.css"> -->
+</head>
+<body onload="prettyPrint()" data-spy="scroll" class="pat-res pat-res-no-code">
+
+<!-- BEGIN PHP -->
+<nav class="pat-res-nav">
+  <div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+  <div class="container-fluid">
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+    <a class="brand" href="#home">Pattern Response</a>
+    <div class="nav-collapse">
+      <ul class="nav" id="main-menu">
+        <%# Build pattern menu %>
+        <%= partial(:menu, :collection => get_patterns) %>
+        </ul>
+      <form class="navbar-search pull-right">
+        <input type="search" data-provide="typeahead" data-items="4" class="pat-res-search-query" placeholder="Search" id="mainSearch">
+      </form>
+      <ul class="nav pull-right">
+        <li><a href="responsive">Other Sizes</span></a></li>
+        <li><a href="#" class="pat-res-code-toggle">Show Code</a></li>
+      </ul>
+    </div></div></div></div></nav>
+    <%# Display patterns %>
+    <div class="pat-res-patterns" id="home">
+      <%# Pattern template %>
+      <%= partial(:pattern, :locals => {:folder_name => "blah"}) %>
+    </div>
+<!-- END PHP -->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="pattern-response/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="pattern-response/js/bootstrap-scrollspy.js"></script>
+<script type="text/javascript" src="pattern-response/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="pattern-response/js/bootstrap-typeahead.js"></script>
+<script type="text/javascript" src="pattern-response/google-code-prettify/prettify.js"></script>
+<script type="text/javascript" src="pattern-response/js/pattern-response.js"></script>
+
+</body>
+</html>

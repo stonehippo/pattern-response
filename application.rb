@@ -7,8 +7,8 @@ class PatternCategory
   def initialize(name)
     @name = name
     
-    if File.exists?(File.join('patterns/', @name, '/info.txt'))
-      @info = File.read(File.join('patterns/', @name, '/info.txt'))
+    if has_info? @name
+      @info = get_info @name
     end
     
     # get the patterns for the current pattern category
@@ -21,8 +21,8 @@ class PatternCategory
       
       # If this is a collection of subpatterns, get them and insert them as subpatterns
       if File.directory? "#{Dir.pwd}/public/patterns/#{name}/#{filename}"
-        if File.exists?(File.join("#{Dir.pwd}/public/patterns/#{name}/#{filename}/", '/info.txt'))
-          @foo.info = File.read(File.join("#{Dir.pwd}/public/patterns/#{name}/#{filename}/", '/info.txt'))
+        if has_info? "#{name}/#{filename}"
+          @foo.info = get_info "#{name}/#{filename}"
         end
         
         Dir.foreach("#{Dir.pwd}/public/patterns/#{name}/#{filename}") do |pattern|
@@ -35,10 +35,18 @@ class PatternCategory
       @items.push(@foo)
     end    
   end
+  
+  def get_info(path)
+    File.read(File.join('public/patterns/', path, '/info.txt'))
+  end
+  
+  def has_info?(path)
+    File.exists?(File.join("public/patterns/", path,'/info.txt'))
+  end
 end
 
 class Pattern
-  attr_accessor :name, :info, :filename, :path, :html, :css, :subpatterns
+  attr_accessor :name, :info, :filename, :path, :html, :css, :sass, :less, :subpatterns
   def initialize(filename, path)
     @name = filename
     @filename = filename
@@ -49,6 +57,10 @@ class Pattern
       @html = find_html(@file)
       @info = find_string(@file, '<!--INFO!', '/INFO-->')
       @css = find_string(@file, '<!--CSS!', '/CSS-->')
+      @sass = find_string(@file, '<!--SASS!', '/SASS-->')
+      @less = find_string(@file, '<!--LESS!', '/LESS->>')  
+    else 
+      @html = "No HTML"
     end
   end
   
@@ -57,7 +69,7 @@ class Pattern
   end
   
   def find_html(source)
-    source.gsub(/<!--INFO!.*\/INFO-->/m, '').gsub(/<!--CSS!.*\/CSS-->/m, '')
+    source.gsub(/<!--([A-Z]+)!.*\/\1-->/m, '')
   end
 end
 

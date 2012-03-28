@@ -1,0 +1,13 @@
+<div class="searchable pat-res-space" title="<%= fix_case(pattern_category.name) %>" id="<%= remove_chars(pattern_category.name) %>"></div>
+<section class="pat-res-section">
+    <header class="pat-res-header">
+      <h2 class="pat-res-heading"><%= fix_case(pattern_category.name) %><a href="#home" class="pat-res-btt">Back to top</a></h2>
+      <% if pattern_category.info  %>
+      <div class="pat-res-info">
+        <%= pattern_category.info %>
+      </div>
+      <% end %>
+    </header>
+  	
+    <%= partial :pattern, :locals=> {:parent => pattern_category.name}, :collection => pattern_category.items %>
+</section>

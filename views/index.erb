@@ -9,7 +9,7 @@ URL: http://lukebrooker.com
 
 <head>
 <meta charset="utf-8">
-<title>Pattern Response - A Responsive Style Guide & Pattern Library</title>
+<title>Pattern Response - A Responsive Style Guide &amp; Pattern Library</title>
 
 <!-- Mobile viewport optimization h5bp.com/ad -->
 <meta name="HandheldFriendly" content="True">
@@ -28,8 +28,6 @@ URL: http://lukebrooker.com
 <!-- <link rel="stylesheet" href="custom/css/custom.css"> -->
 </head>
 <body onload="prettyPrint()" data-spy="scroll" class="pat-res pat-res-no-code">
-
-<!-- BEGIN PHP -->
 <nav class="pat-res-nav">
   <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -42,9 +40,8 @@ URL: http://lukebrooker.com
     <a class="brand" href="#home">Pattern Response</a>
     <div class="nav-collapse">
       <ul class="nav" id="main-menu">
-        <%# Build pattern menu %>
-        <%= partial(:menu, :collection => get_patterns) %>
-        </ul>
+        <%= partial :menu, :collection => get_patterns %>
+      </ul>
       <form class="navbar-search pull-right">
         <input type="search" data-provide="typeahead" data-items="4" class="pat-res-search-query" placeholder="Search" id="mainSearch">
       </form>
@@ -55,8 +52,7 @@ URL: http://lukebrooker.com
     </div></div></div></div></nav>
     <%# Display patterns %>
     <div class="pat-res-patterns" id="home">
-      <%# Pattern template %>
-      <%= partial(:pattern, :locals => {:folder_name => "blah"}) %>
+      <%= partial :pattern_category, :collection => get_patterns %>
     </div>
 <!-- END PHP -->
 

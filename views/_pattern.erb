@@ -1,0 +1,14 @@
+<div class="searchable pat-res-space" title="<%= fix_case(pattern.name) %>" id="<%= remove_chars(pattern.name).gsub(/html/,'') %>"></div>
+<% if !pattern.subpatterns.empty? %>
+  <%# This is a collection of subpatterns %>
+  <header class="pat-res-sub-header">
+    <h3 class="pat-res-heading"><%= fix_case(pattern.name.gsub(/\.html/,'')) %></h3>
+    <% if pattern.info %>
+      <div class="pat-res-info"><%= pattern.info %></div>
+    <% end %>
+  </header>
+  <%= partial :html, :locals => {:is_sub => true}, :collection => pattern.subpatterns %>
+<% else %>
+  <%# This is a plain pattern %>
+  <%= partial :html, :locals => {:is_sub => false, :html => pattern} %>
+<% end %>

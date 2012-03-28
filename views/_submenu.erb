@@ -1,1 +1,1 @@
-<li><a href="<%= '#' + remove_chars(submenu) %>"><%= submenu %></a></li>
+<li><a href="<%= '#' + remove_chars(submenu.name).gsub('html','') %>"><%= fix_case(submenu.name.gsub('.html','')) %></a></li>

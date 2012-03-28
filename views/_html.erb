@@ -1,0 +1,39 @@
+<div class="searchable pat-res-space" title="<%= fix_case(html.filename.gsub(/\.html/,'')) %>" id="' . $file_id . '"></div>
+<% if !is_sub %>
+  <header class="pat-res-sub-header"><h3 class="pat-res-heading"><%= fix_case(html.filename.gsub(/\.html/,'')) %> <a class="pat-res-link" href="<%= "/patterns/#{html.path}" %>"><%= html.filename %></a></h3>
+    <% if html.info %>
+      <div class="pat-res-info"><%= html.info %></div>
+    <% end %>  </header>
+<% else %>
+  <header class="pat-res-sub-header">
+    <h4 class="pat-res-heading"><%= fix_case(html.filename.gsub(/\.html/,'')) %><a class="pat-res-link" href="<%= "/patterns/#{html.path}" %>"><%= html.filename %></a></h4>
+    <% if html.info %>
+      <div class="pat-res-info"><%= html.info %></div>
+    <% end %>
+  </header>
+<% end %>
+<div class="pat-res-pattern">
+  <div class="pat-res-display">
+<!-- if($max_width_string): echo ' style="max-width: ' . $max_width_string . '";'; endif; -->
+  <!-- HTML printed here -->
+    <%= html.html %>
+  </div>
+  <div class="pat-res-source">
+    <div class="html code">
+      <h5 class="pat-res-heading">
+        <a href="<%= html.path %>" class="clip">HTML <span>select</span></a>
+      </h5>
+      <pre class="prettyprint lang-html"><%= html.html %></pre>
+    </div>
+    <!-- If there's CSS -->
+    <% if html.css %>
+      <div class="css code">
+        <h5 class="pat-res-heading"><a href="'.$file.'" class="clip">CSS <span>select</span></a><span class="inline">embedded</span></h5>
+        <pre class="prettyprint lang-css"><%= html.css %></pre>
+      </div>
+      <style type="text/css">
+        <%= html.css %>
+      </style>
+    <% end %>
+  </div>
+</div>

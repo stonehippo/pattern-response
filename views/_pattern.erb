@@ -1,6 +1,6 @@
-<div class="searchable pat-res-space" title="<%= fix_case(pattern.name) %>" id="<%= remove_chars(pattern.name).gsub(/html/,'') %>"></div>
 <% if !pattern.subpatterns.empty? %>
   <%# This is a collection of subpatterns %>
+  <div class="searchable pat-res-space" title="<%= fix_case(pattern.name) %>" id="<%= remove_chars(pattern.name).gsub(/html/,'') %>"></div>
   <header class="pat-res-sub-header">
     <h3 class="pat-res-heading"><%= fix_case(pattern.name.gsub(/\.html/,'')) %></h3>
     <% if pattern.info %>

@@ -1,4 +1,4 @@
-<div class="searchable pat-res-space" title="<%= fix_case(html.filename.gsub(/\.html/,'')) %>" id="' . $file_id . '"></div>
+<div class="searchable pat-res-space" title="<%= fix_case(html.name) %>" id="<%= remove_chars(html.name).gsub(/html/,'') %>"></div>
 <% if !is_sub %>
   <header class="pat-res-sub-header"><h3 class="pat-res-heading"><%= fix_case(html.filename.gsub(/\.html/,'')) %> <a class="pat-res-link" href="<%= "/patterns/#{html.path}" %>"><%= html.filename %></a></h3>
     <% if html.info %>

@@ -27,6 +27,7 @@ class PatternCategory
         
         Dir.foreach("#{Dir.pwd}/public/patterns/#{name}/#{filename}") do |pattern|
           next if pattern =~ /^\./ # skip parent folders and hidden files
+          next if File.extname("#{Dir.pwd}/public/patterns/#{name}/#{filename}/#{pattern}") !~ /\.html$/
           @bar = Pattern.new(pattern, "#{name}/#{filename}/#{pattern}")
           @foo.subpatterns.push(@bar)
         end
@@ -46,7 +47,7 @@ class PatternCategory
 end
 
 class Pattern
-  attr_accessor :name, :info, :filename, :path, :html, :css, :sass, :less, :subpatterns
+  attr_accessor :name, :info, :filename, :path, :html, :css, :css_file, :sass, :less, :subpatterns
   def initialize(filename, path)
     @name = filename
     @filename = filename
@@ -58,9 +59,14 @@ class Pattern
       @info = find_string(@file, '<!--INFO!', '/INFO-->')
       @css = find_string(@file, '<!--CSS!', '/CSS-->')
       @sass = find_string(@file, '<!--SASS!', '/SASS-->')
-      @less = find_string(@file, '<!--LESS!', '/LESS->>')  
+      @less = find_string(@file, '<!--LESS!', '/LESS-->')  
     else 
       @html = "No HTML"
+    end
+    # Find the matching CSS doc, if there is one
+    @css_path = @path.gsub(/.html/, '.css')
+    if !File.directory?("#{Dir.pwd}/public/patterns/#{path}") && File.exists?("#{Dir.pwd}/public/patterns/#{@css_path}")
+      @css_file = File.read("#{Dir.pwd}/public/patterns/#{@css_path}")
     end
   end
   

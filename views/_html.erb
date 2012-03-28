@@ -28,11 +28,19 @@
     <% if html.css %>
       <div class="css code">
         <h5 class="pat-res-heading"><a href="'.$file.'" class="clip">CSS <span>select</span></a><span class="inline">embedded</span></h5>
-        <pre class="prettyprint lang-css"><%= html.css %></pre>
+        <pre class="prettyprint lang-css"><%= h html.css %></pre>
       </div>
       <style type="text/css">
         <%= html.css %>
       </style>
+    <% end %>
+    <% if html.css_file %>
+        <div class="css code">
+          <h5 class="pat-res-heading"><a href="'.$file.'" class="clip">CSS <span>select</span></a><span class="inline">compiled</span></h5>
+          <pre class="prettyprint lang-css">
+            <%= h html.css_file %>
+          </pre>
+        </div>
     <% end %>
   </div>
 </div>

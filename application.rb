@@ -82,6 +82,11 @@ helpers do
     value.gsub(/-/, ' ').scan(/\w+|\W+/).map(&:capitalize).join
   end
 
+  def h(source)
+    coder = HTMLEntities.new
+    coder.encode(source)
+  end
+
 end
 
 get '/' do

@@ -15,7 +15,6 @@
 <div class="pat-res-pattern">
   <div class="pat-res-display">
 <!-- if($max_width_string): echo ' style="max-width: ' . $max_width_string . '";'; endif; -->
-  <!-- HTML printed here -->
     <%= html.html %>
   </div>
   <div class="pat-res-source">
@@ -23,7 +22,7 @@
       <h5 class="pat-res-heading">
         <a href="<%= html.path %>" class="clip">HTML <span>select</span></a>
       </h5>
-      <pre class="prettyprint lang-html"><%= html.html %></pre>
+      <pre class="prettyprint lang-html"><%= h html.html %></pre>
     </div>
     <!-- If there's CSS -->
     <% if html.css %>
